@@ -1,0 +1,19 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+  - task: AzureRmWebAppDeployment@4
+    inputs:
+      ConnectionType: 'AzureRM'
+      azureSubscription: 'Azure for Students(2dce03de-b5eb-4d4d-8b19-d44dc64f7032)'
+      appType: 'webAppLinux'
+      WebAppName: 'nogis'
+      packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
